@@ -1,8 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
-import DriverForm from './components/DriverForm';
 import Drivers from './components/Drivers';
-import Analysis from './components/Analysis';
 import RegisterDriver from './maincompoents/RegisterDriver';
 
 function App() {

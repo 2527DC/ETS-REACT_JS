@@ -6,6 +6,10 @@ export default {
   ],
   theme: {
     extend: {
+
+      height:{
+         fit:"78vh"
+      },
       colors: {
         primary: {
           light: '#6C63FF', // Light variant

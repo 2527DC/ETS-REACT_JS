@@ -18,6 +18,9 @@ const menuItems = [
   { title: 'Manage Vehicles', icon: DirectionsCar, path: '/vehicles' },
   { title: 'Manage Vehicle Types', icon: Category, path: '/vehicle-types' },
   { title: 'Daily Audit Report', icon: Assessment, path: '/audit-report' },
+  
+  
+  
 ];
 
 const Sidebar = () => {
@@ -26,7 +29,7 @@ const Sidebar = () => {
 
   return (
     <div 
-      className={`bg-gray-800 text-white h-screen transition-all duration-300 ${
+      className={`bg-gray-800 text-white transition-all duration-300     ${
         isExpanded ? 'w-64' : 'w-20'
       }`}
       onMouseEnter={() => setIsExpanded(true)}
