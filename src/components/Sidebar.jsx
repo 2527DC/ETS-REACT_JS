@@ -1,61 +1,126 @@
-import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { 
-  People, 
-  DirectionsCar, 
-  Description, 
-  Assessment,
-  BusinessCenter,
-  Category,
-  MonetizationOn
-} from '@mui/icons-material';
+  Users, 
+  Car, 
+  FileText, 
+  PieChart, 
+  Briefcase, 
+  Tags, 
+  DollarSign,
+  PanelLeftClose,
+  PanelLeftOpen,
+  Menu
+} from "lucide-react";
 
 const menuItems = [
-  { title: 'Manage Drivers', icon: People, path: '/drivers' },
-  { title: 'Vehicle Contracts', icon: Description, path: '/vehicle-contracts' },
-  { title: 'Cost Center', icon: MonetizationOn, path: '/cost-center' },
-  { title: 'Manage New Contracts', icon: BusinessCenter, path: '/new-contracts' },
-  { title: 'Manage Vehicles', icon: DirectionsCar, path: '/vehicles' },
-  { title: 'Manage Vehicle Types', icon: Category, path: '/vehicle-types' },
-  { title: 'Daily Audit Report', icon: Assessment, path: '/audit-report' },
-  
-  
-  
+  { title: "Manage Drivers", icon: Users, path: "/drivers" },
+  { title: "Vehicle Contracts", icon: FileText, path: "/vehicle-contracts" },
+  { title: "Cost Center", icon: DollarSign, path: "/cost-center" },
+  { title: "Manage New Contracts", icon: Briefcase, path: "/new-contracts" },
+  { title: "Manage Vehicles", icon: Car, path: "/vehicles" },
+  { title: "Manage Vehicle Types", icon: Tags, path: "/vehicle-types" },
+  { title: "Daily Audit Report", icon: PieChart, path: "/audit-report" },
 ];
 
 const Sidebar = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
-  return (
-    <div 
-      className={`bg-gray-800 text-white transition-all duration-300     ${
-        isExpanded ? 'w-64' : 'w-20'
-      }`}
-      onMouseEnter={() => setIsExpanded(true)}
-      onMouseLeave={() => setIsExpanded(false)}
-    >
-  <div className="p-4 flex items-center">
-  <img src="https://via.placeholder.com/100" alt="Company Logo"className="w-20 h-20 mr-3"/>
-  <h1 className={`text-xl font-bold ${!isExpanded && 'scale-0'} transition-all duration-300`}> Company Name </h1>
-</div>
+  const toggleSidebar = () => {
+    setIsExpanded(!isExpanded);
+  };
 
-      <nav className="mt-8">
-        {menuItems.map((item) => (
-          <Link
-            key={item.path}
-            to={item.path}
-            className={`flex items-center px-4 py-3 transition-colors duration-200
-              ${location.pathname === item.path ? 'bg-blue-600' : 'hover:bg-gray-700'}`}
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  return (
+    <>
+      {/* Mobile Menu Button */}
+      <button
+        onClick={toggleMobileMenu}
+        className="fixed top-4 left-4 z-50 p-2 rounded-lg bg-gray-800 text-white sm:hidden hover:bg-gray-700 transition-colors"
+      >
+        <Menu size={24} />
+      </button>
+
+      {/* Sidebar */}
+      <div
+        className={`bg-gray-800 text-white transition-all duration-300 fixed sm:relative z-40 
+          ${isExpanded ? "w-64" : "w-20"}
+          ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full sm:translate-x-0"}
+        `}
+      >
+        {/* Logo and Header */}
+        <div className="px-3 py-4 flex items-center justify-between border-b border-gray-700">
+          {/* Conditionally Render Image */}
+          {isExpanded && (
+            <img
+              src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&fit=crop&q=80"
+              alt="Company Logo"
+              className="w-12 h-12 rounded-lg object-cover"
+            />
+          )}
+          <h1
+            className={`ml-3 text-xl font-bold transition-all duration-300
+              ${!isExpanded && "hidden"}
+            `}
           >
-            <item.icon className="w-6 h-6" />
-            <span className={`ml-4 ${!isExpanded && 'hidden'} whitespace-nowrap`}>
-              {item.title}
-            </span>
-          </Link>
-        ))}
-      </nav>
-    </div>
+            Dashboard
+          </h1>
+          {/* Toggle Button */}
+          <button
+            onClick={toggleSidebar}
+            className="hidden sm:flex items-center justify-center w-8 h-8 rounded-lg ml-2 hover:bg-gray-700 transition-colors"
+          >
+            {isExpanded ? (
+              <PanelLeftClose size={20} className="text-gray-300" />
+            ) : (
+              <PanelLeftOpen size={20} className="text-gray-300" />
+            )}
+          </button>
+        </div>
+
+        {/* Menu Items */}
+        <nav className="mt-6">
+          {menuItems.map((item) => {
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`flex items-center p-2 transition-all duration-200 group
+                  ${location.pathname === item.path
+                    ? "bg-blue-600 text-white"
+                    : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                  }
+                  ${!isExpanded && "justify-center"}  // Center icons when collapsed
+                `}
+              >
+                <Icon className={`w-6 h-6`} />
+                {isExpanded && (
+                  <span
+                    className={`ml-4 transition-all duration-300`}
+                  >
+                    {item.title}
+                  </span>
+                )}
+              </Link>
+            );
+          })}
+        </nav>
+      </div>
+
+      {/* Overlay for mobile */}
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-30 sm:hidden"
+          onClick={toggleMobileMenu}
+        />
+      )}
+    </>
   );
 };
 

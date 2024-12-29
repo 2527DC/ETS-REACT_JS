@@ -79,7 +79,7 @@ const PersionalDetail = () => {
 
   return (
     <form onSubmit={handleSubmit} className="h-fit">
-      <div className="grid lg:grid-cols-4 gap-4 sm:grid-cols-2 gap-4 p-3">
+      <div className="grid 2xl:grid-cols-5 lg:grid-cols-4 gap-4 sm:grid-cols-2 sx:grid-cols-2  gap-4 p-3">
         {inputData.map((input) => (
           <InputFields
             key={input.id}

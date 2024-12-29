@@ -7,6 +7,9 @@ export default {
   theme: {
     extend: {
 
+   screens:{
+        sx:"425px"
+     },
       height:{
          fit:"78vh"
       },
