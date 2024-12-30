@@ -6,12 +6,8 @@ const RegisterDriver = () => {
   const [activeTab, setActiveTab] = useState(true); // No type assertion in plain JavaScript
 
   return (
-  
-
-
-    <div className="">
-
-      <div><h1 className="text-2xl text-tertiary-dark font-bold"> ADD DRIVER</h1></div>
+    <>
+      <div className="ml-9"><h1 className="text-2xl text-tertiary-dark font-bold"> ADD DRIVER</h1></div>
 
    <div className="mt-3 p-3 ">
   <nav className="">
@@ -39,7 +35,7 @@ const RegisterDriver = () => {
           activeTab?<PersionalDetail/>:""
         }
       </div>
-    </div>
+</>
   );
 };
 

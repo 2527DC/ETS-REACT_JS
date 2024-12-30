@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Building, IdCard, Mail, Phone, User } from "lucide-react";
+import { Building, IdCard, Mail, Phone, User,Camera} from "lucide-react";
 import { InputFields, OptionInput } from "./smallcomponents";
 
 const PersionalDetail = () => {
@@ -15,6 +15,7 @@ const PersionalDetail = () => {
 
   const handleChange = (e) => {
     // Update the formData state
+    console.log("Form Data in the  handle change ", formData);
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -64,6 +65,15 @@ const PersionalDetail = () => {
       name: "phoneNumber",
     },
     {
+      id: "alternative-phone-number",
+      label: "Alternate Number",
+      placeholder: "Phone Number",
+      type: "tel",
+      required: false,
+      icon: Phone,
+      name: "phoneNumber",
+    },
+    {
       id: "driver-id",
       label: "Driver Id",
       placeholder: "Enter Driver Id",
@@ -72,14 +82,24 @@ const PersionalDetail = () => {
       icon: IdCard,
       name: "driverId",
     },
+    {
+      id: "upload-pic",
+      label: "uploadpic",
+      type: "file",
+      required: true,
+      icon: Camera,
+      name: "lastName ",
+    },
   ];
 
   const cities = ["Mumbai", "Delhi", "Bangalore", "Chennai", "Kolkata", "Hyderabad"];
   const vendors = ["Vendor 1", "Vendor 2", "Vendor 3", "Vendor 4"];
 
   return (
-    <form onSubmit={handleSubmit} className="h-fit">
-      <div className="grid 2xl:grid-cols-5 lg:grid-cols-4 gap-4 sm:grid-cols-2 sx:grid-cols-2  gap-4 p-3">
+    <form onSubmit={handleSubmit} className="">
+      <div className=" grid 2xl:grid-cols-5 lg:grid-cols-4 gap-4 sm:grid-cols-2 sx:grid-cols-2  gap-4 p-3">
+
+
         {inputData.map((input) => (
           <InputFields
             key={input.id}
@@ -117,7 +137,7 @@ const PersionalDetail = () => {
         />
       </div>
 
-      <div className="p-3">
+      <div className="p-3 ">
         <button
           type="submit"
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"

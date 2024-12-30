@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { 
-  Users, 
-  Car, 
-  FileText, 
-  PieChart, 
-  Briefcase, 
-  Tags, 
+import {
+  Users,
+  Car,
+  FileText,
+  PieChart,
+  Briefcase,
+  Tags,
   DollarSign,
   PanelLeftClose,
   PanelLeftOpen,
-  Menu
+  Menu,
+  X,
 } from "lucide-react";
 
 const menuItems = [
@@ -39,22 +40,25 @@ const Sidebar = () => {
   return (
     <>
       {/* Mobile Menu Button */}
-      <button
-        onClick={toggleMobileMenu}
-        className="fixed top-4 left-4 z-50 p-2 rounded-lg bg-gray-800 text-white sm:hidden hover:bg-gray-700 transition-colors"
+   {
+
+      isMobileMenuOpen? "": <button
+      onClick={toggleMobileMenu}
+      className="fixed top-4 left-4 z-50 p-2 rounded-lg bg-gray-800 text-white sm:hidden hover:bg-gray-700 transition-colors"
       >
-        <Menu size={24} />
+      {">"}
       </button>
+   }  
 
       {/* Sidebar */}
       <div
-        className={`bg-gray-800 text-white transition-all duration-300 fixed sm:relative z-40 
+        className={`bg-gray-800 text-white transition-all  h-screen duration-300 fixed sm:relative z-40 
           ${isExpanded ? "w-64" : "w-20"}
           ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full sm:translate-x-0"}
         `}
       >
-        {/* Logo and Header */}
-        <div className="px-3 py-4 flex items-center justify-between border-b border-gray-700">
+        {/* Sidebar Header */}
+        <div className="px-3 py-4 flex items-center justify-between border-b  border-gray-700">
           {/* Conditionally Render Image */}
           {isExpanded && (
             <img
@@ -70,7 +74,7 @@ const Sidebar = () => {
           >
             Dashboard
           </h1>
-          {/* Toggle Button */}
+          {/* Sidebar Toggle Button */}
           <button
             onClick={toggleSidebar}
             className="hidden sm:flex items-center justify-center w-8 h-8 rounded-lg ml-2 hover:bg-gray-700 transition-colors"
@@ -81,6 +85,15 @@ const Sidebar = () => {
               <PanelLeftOpen size={20} className="text-gray-300" />
             )}
           </button>
+          {/* Close Button for Mobile */}
+          {isMobileMenuOpen && (
+            <button
+              onClick={toggleMobileMenu}
+              className="sm:hidden flex items-center justify-center w-8 h-8 rounded-lg ml-2 hover:bg-gray-700 transition-colors"
+            >
+              <X size={20} className="text-gray-300" />
+            </button>
+          )}
         </div>
 
         {/* Menu Items */}
