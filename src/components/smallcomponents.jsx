@@ -1,4 +1,4 @@
-import { User } from "lucide-react";
+
 
 export const InputFields = ({
   label,

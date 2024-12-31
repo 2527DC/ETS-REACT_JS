@@ -2,10 +2,11 @@ import { useState } from "react"
 import GlobalContext from "./context"
 
 const GlobalProvider=({children})=>{
-const [navisible,setNav]= useState(false)
+
+    const [isHovered, setIsHovered] = useState(false);
 return(
 
-    <GlobalContext.Provider  value  ={{ navisible,setNav}}>
+    <GlobalContext.Provider  value  ={{isHovered, setIsHovered}}>
         {children}
     </GlobalContext.Provider>
 )

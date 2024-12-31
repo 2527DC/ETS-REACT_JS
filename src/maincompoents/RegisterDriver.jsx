@@ -7,7 +7,7 @@ const RegisterDriver = () => {
 
   return (
     <>
-      <div className="ml-9"><h1 className="text-2xl text-tertiary-dark font-bold"> ADD DRIVER</h1></div>
+      <div className=" mt-4 "><h1 className="text-2xl  ml-4 text-tertiary-dark font-bold"> ADD DRIVER</h1></div>
 
    <div className="mt-3 p-3 ">
   <nav className="">
