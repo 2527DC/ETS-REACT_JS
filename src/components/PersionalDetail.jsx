@@ -1,27 +1,50 @@
 import React, { useState } from "react";
-import { Building, IdCard, Mail, Phone, User,Camera} from "lucide-react";
+import { Building, IdCard, Mail, Phone, User, Camera, MapPin } from "lucide-react";
 import { InputFields, OptionInput } from "./smallcomponents";
 
 const PersionalDetail = () => {
   const [formData, setFormData] = useState({
-      firstName: "",
-      lastName: "",
-      email: "",
-      phoneNumber: "",
-      driverId: "",
-      city: "",
-      vendor: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    driverId: "",
+    city: "",
+    vendor: "",
+    currentAddress: "",
+    permanentAddress: "",
+    gender: "",
+    dob: "", // Add this line
   });
 
+  const [isSameAddress, setIsSameAddress] = useState(false);
+
   const handleChange = (e) => {
-    // Update the formData state
-    console.log("Form Data in the  handle change ", formData);
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
+
+    if (isSameAddress && name === "currentAddress") {
+      setFormData((prev) => ({
+        ...prev,
+        permanentAddress: value,
+      }));
+    }
   };
-  
+
+  const handleCheckboxChange = () => {
+    setIsSameAddress(!isSameAddress);
+
+    if (!isSameAddress) {
+      setFormData((prev) => ({
+        ...prev,
+        permanentAddress: formData.currentAddress,
+      }));
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Submitted Form Data:", formData);
@@ -47,6 +70,15 @@ const PersionalDetail = () => {
       name: "lastName",
     },
     {
+      id: "BOB",
+      label: "Date of Birth",
+      placeholder: "Enter DOB",
+      type: "date",
+      required: true,
+      icon: User,
+      name: "dob",
+    },
+    {
       id: "email",
       label: "Email Address",
       placeholder: "Enter your email",
@@ -65,13 +97,22 @@ const PersionalDetail = () => {
       name: "phoneNumber",
     },
     {
-      id: "alternative-phone-number",
-      label: "Alternate Number",
-      placeholder: "Phone Number",
-      type: "tel",
-      required: false,
-      icon: Phone,
-      name: "phoneNumber",
+      id: "current-address",
+      label: "Current Address",
+      placeholder: "Enter Current Address",
+      type: "text",
+      required: true,
+      icon: MapPin,
+      name: "currentAddress",
+    },
+    {
+      id: "permanent-address",
+      label: "Permanent Address",
+      placeholder: "Enter Permanent Address",
+      type: "text",
+      required: true,
+      icon: MapPin,
+      name: "permanentAddress",
     },
     {
       id: "driver-id",
@@ -82,24 +123,14 @@ const PersionalDetail = () => {
       icon: IdCard,
       name: "driverId",
     },
-    {
-      id: "upload-pic",
-      label: "uploadpic",
-      type: "file",
-      required: true,
-      icon: Camera,
-      name: "lastName ",
-    },
   ];
 
   const cities = ["Mumbai", "Delhi", "Bangalore", "Chennai", "Kolkata", "Hyderabad"];
   const vendors = ["Vendor 1", "Vendor 2", "Vendor 3", "Vendor 4"];
 
   return (
-    <form onSubmit={handleSubmit} className="">
-      <div className=" grid 2xl:grid-cols-5 lg:grid-cols-4 gap-4 sm:grid-cols-2 sx:grid-cols-2  gap-4 p-3">
-
-
+    <form onSubmit={handleSubmit} className="p-3">
+      <div className="grid 2xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-2 gap-4">
         {inputData.map((input) => (
           <InputFields
             key={input.id}
@@ -137,7 +168,59 @@ const PersionalDetail = () => {
         />
       </div>
 
-      <div className="p-3 ">
+      <div className="flex items-center p-3">
+        <input
+          type="checkbox"
+          id="same-address"
+          checked={isSameAddress}
+          onChange={handleCheckboxChange}
+          className="mr-2"
+        />
+        <label htmlFor="same-address">Same as Current Address</label>
+      </div>
+
+      <div className="p-3">
+        <label className="block mb-2 font-medium">Gender</label>
+        <div className="flex items-center space-x-4">
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              value="Male"
+              checked={formData.gender === "Male"}
+              onChange={handleChange}
+              className="mr-2"
+            />
+            Male
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              value="Female"
+              checked={formData.gender === "Female"}
+              onChange={handleChange}
+              className="mr-2"
+            />
+            Female
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              value="Others"
+              checked={formData.gender === "Others"}
+              onChange={handleChange}
+              className="mr-2"
+            />
+            Others
+          </label>
+        </div>
+      </div>
+
+    
+
+      <div className="p-3">
         <button
           type="submit"
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"

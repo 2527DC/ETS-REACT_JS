@@ -28,11 +28,11 @@ const RegisterDriver = () => {
         Documents
       </button>
   </nav>
-   </div>
+   </div >
         {/* content section  */}
-      <div>
+      <div >
         {
-          activeTab?<PersionalDetail/>:""
+          activeTab?<PersionalDetail/>:<DocumentUpload></DocumentUpload>
         }
       </div>
 </>

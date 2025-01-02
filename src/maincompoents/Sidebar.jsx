@@ -1,9 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
-  Users,
   Car,
-  FileText,
   PieChart,
   Briefcase,
   Tags,
@@ -14,7 +12,11 @@ import {
   ChevronUp,
   X,
   Building2,
+  UserCheck,
+  IdCard,
+  PersonStanding
 } from 'lucide-react';
+
 import GlobalContext from '../store/context';
 
 const menuItems = [
@@ -23,11 +25,13 @@ const menuItems = [
     title: 'Users',
     icon: Users2,
     subItems: [
-      { title: 'Drivers', path: '/drivers', icon: Users },
-      { title: 'Client', path: '/users/roles', icon: Briefcase },
+      { title: '  Drivers', path: '/drivers', icon:IdCard},
+      { title: 'Admins', path: '/Admins', icon:UserCheck },
+      { title: 'Client', path: '/Client', icon: Briefcase },
+      { title: 'Customer', path: '/Customer', icon: PersonStanding },
     ],
   },
-  { title: 'Vehicle Contracts', icon: FileText, path: '/vehicle-contracts' },
+  { title: 'Vehicle Contracts', icon: Car, path: '/vehicle-contracts' },
   { title: 'Cost Center', icon: DollarSign, path: '/cost-center' },
   { title: 'Manage New Contracts', icon: Briefcase, path: '/new-contracts' },
   { title: 'Manage Vehicles', icon: Car, path: '/vehicles' },
@@ -49,7 +53,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`fixed z-50 bg-gray-800 h-full transition-all duration-300 ease-in-out ${
+      className={`fixed z-50 bg-gray-800 h-full transition-all duration-300 ease-in-out  ${
         isHovered ? 'w-64' : 'w-0 lg:w-20'
       } md:relative overflow-hidden ${
         isHovered ? 'lg:absolute' : ''
@@ -64,8 +68,8 @@ const Sidebar = () => {
           {isHovered && (
             <div className="ml-3 flex items-center justify-between w-full">
               <div>
-                <h1 className="text-lg font-semibold text-white">FleetMaster</h1>
-                <p className="text-xs text-gray-400">Fleet Management System</p>
+                <h1 className="text-lg font-semibold text-white">FleetQuest</h1>
+                <p className="text-xs text-gray-400">FleetQuestManagement System</p>
               </div>
               <button
                 onClick={() => setIsHovered(false)}
