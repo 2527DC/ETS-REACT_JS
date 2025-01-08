@@ -1,3 +1,7 @@
+import { Edit, Trash } from "lucide-react";
+
+
+
 export const InputFields = ({
   label,
   placeholder = "Enter value",
@@ -81,5 +85,19 @@ export const OptionInput = ({
         </select>
       </div>
     </div>
+  );
+};
+
+
+
+ export const ActionButtons = () => {
+  return (
+    <>
+      <button className="text-blue-600 hover:text-blue-900 mr-3 flex items-center">
+        <Edit className="mr-1" size={16} />
+        Edit
+      </button>
+      
+    </>
   );
 };

@@ -1,9 +1,6 @@
-import { useState } from "react";
-import PersionalDetail from "../components/PersionalDetail";
-import DocumentUpload from "../components/DocumentUpload";
+
 
 const RegisterDriver = () => {
-  const [activeTab, setActiveTab] = useState(true); // No type assertion in plain JavaScript
 
   return (
     <>
@@ -31,6 +28,7 @@ const RegisterDriver = () => {
    </div >
         {/* content section  */}
       <div >
+        
         {
           activeTab?<PersionalDetail/>:<DocumentUpload></DocumentUpload>
         }

@@ -1,4 +1,9 @@
-import { createContext } from "react"
+import { createContext } from "react";
 
- const GlobalContext= createContext()
-export default GlobalContext
+// Create GlobalContext
+const GlobalContext = createContext();
+
+// Create DataContext
+const DataContext = createContext();
+
+export { GlobalContext, DataContext };

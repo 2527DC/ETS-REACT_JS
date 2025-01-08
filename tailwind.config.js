@@ -11,7 +11,7 @@ export default {
         sx:"425px"
      },
       height:{
-         fit:"78vh"
+         fit:"90vh"
       },
       colors: {
         primary: {

@@ -14,10 +14,12 @@ import {
   Building2,
   UserCheck,
   IdCard,
-  PersonStanding
+  PersonStanding,
+  NotebookText
 } from 'lucide-react';
+import { GlobalContext } from '../store/context';
 
-import GlobalContext from '../store/context';
+
 
 const menuItems = [
   { title: 'Dashboard', icon: LayoutDashboard, path: '/' },
@@ -37,6 +39,8 @@ const menuItems = [
   { title: 'Manage Vehicles', icon: Car, path: '/vehicles' },
   { title: 'Manage Vehicle Types', icon: Tags, path: '/vehicle-types' },
   { title: 'Daily Audit Report', icon: PieChart, path: '/audit-report' },
+  { title: 'Booking', icon:  NotebookText, path: '/Booking' },
+  
 ];
 
 const Sidebar = () => {
@@ -53,7 +57,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`fixed z-50 bg-gray-800 h-full transition-all duration-300 ease-in-out  ${
+      className={`fixed z-50 bg-gray-800 h-screen transition-all duration-300 ease-in-out  ${
         isHovered ? 'w-64' : 'w-0 lg:w-20'
       } md:relative overflow-hidden ${
         isHovered ? 'lg:absolute' : ''
@@ -61,7 +65,7 @@ const Sidebar = () => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="flex flex-col h-full">
+      <div className="flex flex-col h-screen">
         {/* Header */}
         <div className="flex items-center p-4 border-b border-gray-700">
           <Building2 className="text-blue-500" size={24} />
@@ -73,7 +77,7 @@ const Sidebar = () => {
               </div>
               <button
                 onClick={() => setIsHovered(false)}
-                className="text-gray-300 hover:text-white ml-auto"
+                className=" xl:hidden text-gray-300 hover:text-white ml-auto "
                 aria-label="Close Sidebar"
               >
                 <X size={20} />

@@ -4,11 +4,12 @@ import App from './App.jsx'
 import './index.css'
 import GlobalProvider from './store/Providers.jsx'
 
+
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+ 
   <GlobalProvider>
   <App />
   </GlobalProvider>
 
-  </StrictMode>,
+ 
 )

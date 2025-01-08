@@ -1,22 +1,28 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Drivers from './components/Drivers';
-import RegisterDriver from './maincompoents/RegisterDriver';
-import { useContext, useState } from 'react';
-
+import { useContext } from 'react';
 import Sidebar from './maincompoents/Sidebar';
 import { Menu } from 'lucide-react';
-import GlobalContext from './store/context';
-
-
+import DataProvider from './store/DataProvider';
+import { GlobalContext } from './store/context';
+import Admins from './maincompoents/Admins';
+import Drivers from './maincompoents/Drivers';
+import MainContent from './maincompoents/MainContent';
+import Client from './maincompoents/Client';
 
 
 function App() {
+
+
+  
   const { isHovered, setIsHovered } = useContext(GlobalContext); // Correct usage
 
    const handlenav=()=>{
 setIsHovered(true)
   }
   return (
+
+<DataProvider>
+
     <Router>
     
       <div className="flex">
@@ -45,9 +51,10 @@ setIsHovered(true)
      
     </nav>
           <Routes>
-          <Route path="/" element={<RegisterDriver/> } />
-            <Route path="/drivers" element={<Drivers/>} />
-            <Route path="/" element={<h1>Vehicle Contracts</h1>} />
+          <Route path="/" element={<MainContent/>} />
+            <Route path="/drivers" element={<Drivers/>} />  
+            <Route path="/Admins" element={<Admins/>} />
+            <Route path="/Client" element={<Client/>} />
             <Route path="/vehicle-contracts" element={<h1>Vehicle Contracts</h1>} />
             <Route path="/cost-center" element={<h1>Cost Center</h1>} />
             <Route path="/new-contracts" element={<h1>Manage New Contracts</h1>} />
@@ -58,6 +65,8 @@ setIsHovered(true)
         </main>
       </div>
     </Router>
+</DataProvider>
+
   );
 }
 
