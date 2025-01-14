@@ -7,7 +7,8 @@ import { GlobalContext } from './store/context';
 import Admins from './maincompoents/Admins';
 import Drivers from './maincompoents/Drivers';
 import MainContent from './maincompoents/MainContent';
-import Client from './maincompoents/Client';
+import Client from './Client/Client';
+import Customer from './Customer/Customer';
 
 
 function App() {
@@ -55,7 +56,7 @@ setIsHovered(true)
             <Route path="/drivers" element={<Drivers/>} />  
             <Route path="/Admins" element={<Admins/>} />
             <Route path="/Client" element={<Client/>} />
-            <Route path="/vehicle-contracts" element={<h1>Vehicle Contracts</h1>} />
+            <Route path="/customer" element={<Customer/>} />
             <Route path="/cost-center" element={<h1>Cost Center</h1>} />
             <Route path="/new-contracts" element={<h1>Manage New Contracts</h1>} />
             <Route path="/vehicles" element={<h1>Manage Vehicles</h1>} />

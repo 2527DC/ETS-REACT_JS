@@ -7,6 +7,7 @@ const GlobalProvider=({children})=>{
     const [isHovered, setIsHovered] = useState(false);
 
   const [selectedRows, setSelectedRows] = useState([]);
+  const[userRole,setUserRole]=useState("Super Admin")
 
 return(
 

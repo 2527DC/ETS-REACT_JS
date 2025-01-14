@@ -30,7 +30,7 @@ const menuItems = [
       { title: '  Drivers', path: '/drivers', icon:IdCard},
       { title: 'Admins', path: '/Admins', icon:UserCheck },
       { title: 'Client', path: '/Client', icon: Briefcase },
-      { title: 'Customer', path: '/Customer', icon: PersonStanding },
+      { title: 'Customer', path: '/customer', icon: PersonStanding },
     ],
   },
   { title: 'Vehicle Contracts', icon: Car, path: '/vehicle-contracts' },
@@ -46,7 +46,7 @@ const menuItems = [
 const Sidebar = () => {
   const [expandedItems, setExpandedItems] = useState({});
   const location = useLocation();
-  const { isHovered, setIsHovered } = useContext(GlobalContext);
+  const { isHovered, setIsHovered,userRole } = useContext(GlobalContext);
 
   const toggleSubMenu = (title) => {
     setExpandedItems((prev) => ({
@@ -84,6 +84,13 @@ const Sidebar = () => {
               </button>
             </div>
           )}
+        </div>
+        <div className='flex  items-center p-4 border-b border-gray-700 '>
+          <h1 className='text-white'>
+            {
+            userRole
+            }
+          </h1>
         </div>
 
         {/* Navigation */}
